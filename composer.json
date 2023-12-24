@@ -1,0 +1,36 @@
+{
+  "name": "phpcatcom/laravel-permission",
+  "description": "easy way for permissions management",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Sergey Baklanov php-cat.com",
+      "email": "1@php-cat.com",
+      "homepage": "https://php-cat.com",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "laravel",
+    "user",
+    "permission",
+    "php-cat.com",
+    "sergey baklanov"
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "PhpCatCom\\LaravelPermissionServiceProvider"
+      ]
+    }
+  },
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhpCatCom\\": "src/"
+    }
+  }
+}
