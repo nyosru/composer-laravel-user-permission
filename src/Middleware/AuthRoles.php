@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpCatCom\Middleware;
+namespace Phpcatcom\Permission\Middleware;
 
-use Amir\Permission\Exceptions\UnauthenticatedException;
-use Amir\Permission\Exceptions\UnauthorizedException;
-use Amir\Permission\Models\Permission;
+use Phpcatcom\Permission\Exceptions\UnauthenticatedException;
+use Phpcatcom\Permission\Exceptions\UnauthorizedException;
+use Phpcatcom\Permission\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 

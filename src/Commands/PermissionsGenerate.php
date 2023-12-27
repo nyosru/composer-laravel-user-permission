@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpCatCom\Commands;
+namespace Phpcatcom\Permission\Commands;
 
-use PhpCatCom\Models\Permission;
-use PhpCatCom\Models\Role;
+use Phpcatcom\Permission\Models\Permission;
+use Phpcatcom\Permission\Models\Role;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Route;
 

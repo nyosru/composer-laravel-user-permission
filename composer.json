@@ -20,7 +20,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "PhpCatCom\\LaravelPermissionServiceProvider"
+        "Phpcatcom\\Permission\\LaravelPermissionServiceProvider"
       ]
     }
   },
@@ -30,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PhpCatCom\\": "src/"
+      "Phpcatcom\\Permission\\": "src/"
     }
   }
 }

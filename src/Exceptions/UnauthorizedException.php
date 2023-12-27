@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpCatCom\Exceptions;
+namespace Phpcatcom\Permission\Exceptions;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

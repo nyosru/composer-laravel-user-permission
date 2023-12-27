@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpCatCom\Models;
+namespace Phpcatcom\Permission\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

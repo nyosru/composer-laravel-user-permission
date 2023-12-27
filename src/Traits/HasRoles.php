@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpCatCom\Traits;
+namespace Phpcatcom\Permission\Traits;
 
-use PhpCatCom\Models\Role;
+use Phpcatcom\Permission\Models\Role;
 
 trait HasRoles
 {
@@ -10,7 +10,7 @@ trait HasRoles
     {
         return $this->belongsTo(Role::class);
     }
-    
+
     public function getRoleNameAttribute(){
         return $this->role()->first()->name ?? null ;
     }
