@@ -6,7 +6,7 @@ use PhpCatCom\Middleware\AuthRoles;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 
-class LaravelPermissionServiceProvider00 extends ServiceProvider
+class LaravelPermissionServiceProvider extends ServiceProvider
 {
     public function boot(Router $router)
     {
