@@ -29,8 +29,8 @@ class PermissionController extends Controller
 //            var_dump( '' );
 
             if ($action == "Closure") {
-                $action = '';
-//                continue;
+//                $action = '';
+                continue;
             }
 
 //            $in['domain'] = $route->getDomain();
