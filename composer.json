@@ -1,7 +1,7 @@
 {
   "name": "phpcatcom/laravel-permission",
   "description": "easy way for permissions management",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "authors": [
     {
       "name": "Sergey Baklanov php-cat.com",

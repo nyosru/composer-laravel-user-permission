@@ -2,7 +2,7 @@
 
 namespace Phpcatcom\Permission;
 
-use Phpcatcom\Middleware\AuthRoles;
+use Phpcatcom\Permission\Middleware\AuthRoles;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 
