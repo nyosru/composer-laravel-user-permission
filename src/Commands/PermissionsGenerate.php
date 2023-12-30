@@ -2,6 +2,7 @@
 
 namespace Phpcatcom\Permission\Commands;
 
+use Phpcatcom\Permission\Controllers\PermissionController;
 use Phpcatcom\Permission\Models\Permission;
 use Phpcatcom\Permission\Models\Role;
 use Illuminate\Console\Command;
@@ -43,40 +44,10 @@ class PermissionsGenerate extends Command
         $options = $this->options();
 
         if ($options['fresh']) {
-            Permission::query()->delete();
-            Role::query()->delete();
+            PermissionController::fresh();
         }
 
-        $routes = Route::getRoutes()->getRoutes();
+        PermissionController::generate();
 
-        foreach ($routes as $route){
-            $action = $route->getActionname();
-
-            if ($action == "Closure") {
-                continue;
-            }
-
-            $name = $route->getName();
-            $permission = Permission::updateOrCreate(
-                ['name'=>$name],
-                ['action'=>$action]
-            );
-
-            if (key_exists('role', $route->action)) {
-                $roles = $route->action['role'];
-
-                if (is_array($roles)) {
-                    foreach ($roles as $role) {
-                        $role = Role::firstOrCreate(['name'=> $role]);
-
-                        $role->permissions()->syncWithoutDetaching($permission->id);
-                    }
-                } else {
-                    $role = Role::firstOrCreate(['name'=> $roles]);
-
-                    $role->permissions()->syncWithoutDetaching($permission->id);
-                }
-            }
-        }
     }
 }

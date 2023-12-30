@@ -1,7 +1,7 @@
 {
   "name": "phpcatcom/laravel-permission",
   "description": "easy way for permissions management",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "authors": [
     {
       "name": "Sergey Baklanov php-cat.com",
@@ -32,5 +32,10 @@
     "psr-4": {
       "Phpcatcom\\Permission\\": "src/"
     }
+  },
+  "support": {
+    "issues": "https://github.com/nyosru/composer-laravel-user-permission/issues",
+    "source": "https://packagist.org/packages/phpcatcom/laravel-permission",
+    "docs": "https://php-cat.com"
   }
 }
