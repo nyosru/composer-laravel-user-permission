@@ -7,6 +7,7 @@ use Phpcatcom\Permission\Exceptions\UnauthorizedException;
 use Phpcatcom\Permission\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
+use Phpcatcom\Permission\Models\Role;
 
 class AuthRoles
 {
@@ -23,7 +24,7 @@ class AuthRoles
 
         $guards = collect(config('auth.guards'));
 
-        $authGuard = $guards->keys()->filter(function($key) {
+        $authGuard = $guards->keys()->filter(function ($key) {
             return auth($key)->check();
         })->first();
 
@@ -34,14 +35,19 @@ class AuthRoles
 
         $role_id = auth($authGuard)->user()->role_id;
 
-        $permission = Permission::where(function ($query)use ($action, $name){
-            $query->where('name', $name);
-            $query->orWhere('action', $action);
-        })->whereHas('roles', function ($query) use($role_id){
-            $query->where('id',$role_id);
-        })->first();
+        // если открыт полный доступ для роли
+        if (Role::find($role_id)->where('access_full', '=', true)->first()) {
+        } // иначе
+        else {
+            $permission = Permission::where(function ($query) use ($action, $name) {
+                $query->where('name', $name);
+                $query->orWhere('action', $action);
+            })->whereHas('roles', function ($query) use ($role_id) {
+                $query->where('id', $role_id);
+            })->first();
 
-        throw_if(is_null($permission), UnauthorizedException::noPermission());
+            throw_if(is_null($permission), UnauthorizedException::noPermission());
+        }
 
         return $next($request);
     }
