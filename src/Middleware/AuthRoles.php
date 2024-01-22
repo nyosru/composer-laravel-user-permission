@@ -8,6 +8,7 @@ use Phpcatcom\Permission\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Phpcatcom\Permission\Models\Role;
+use Phpcatcom\Permission\Models\User;
 
 class AuthRoles
 {
@@ -27,18 +28,21 @@ class AuthRoles
         $authGuard = $guards->keys()->filter(function ($key) {
             return auth($key)->check();
         })->first();
-
         throw_if(!auth($authGuard)->check(), UnauthenticatedException::notLoggedIn());
 
-        $action = $request->route()->getActionname();
-        $name = $request->route()->getActionname();
+        $super_access_count = User::whereAccessFull(true)->count();
+        if ($super_access_count > 0) {
+//            echo 'sdfsdf<div style="padding:10px; background-color: yellow; margin: 10px;">Для работы плагина управления правами доступа, дайте полные права в разделе пользвателя (своему пользователю) </div>';
 
-        $role_id = auth($authGuard)->user()->role_id;
+            if( auth($authGuard)->user()->access_full ){
+//                echo __LINE__.' есть полный доступ';
+            }else{
+//                echo __LINE__.' нет полный доступ';
 
-        // если открыт полный доступ для роли
-        if (Role::find($role_id)->where('access_full', '=', true)->first()) {
-        } // иначе
-        else {
+            $action = $request->route()->getActionname();
+            $name = $request->route()->getActionname();
+            $role_id = auth($authGuard)->user()->role_id;
+
             $permission = Permission::where(function ($query) use ($action, $name) {
                 $query->where('name', $name);
                 $query->orWhere('action', $action);
@@ -47,8 +51,9 @@ class AuthRoles
             })->first();
 
             throw_if(is_null($permission), UnauthorizedException::noPermission());
-        }
 
+        }
+        }
         return $next($request);
     }
 }
